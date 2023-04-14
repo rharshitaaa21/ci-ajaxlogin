@@ -17,7 +17,7 @@ class Register extends Controller
     public function do_register()
     {
       
-        $userModel = new UserModel();
+        // $userModel = new UserModel();
         $validation = \Config\Services::validation();
         helper('form', 'url');
         // print_r($validation);
@@ -55,18 +55,27 @@ class Register extends Controller
             'name' => $name,
             'email' => $email,
             'password' => $password,
-            'confirmpassword' => $confirmpassword,
+             'confirmpassword' => $confirmpassword,
            
         ];
-         print_r($data);
+        //  print_r($data);
 
+        $userModel = new UserModel();
         if ($validation->run($data)) {
             // print_r($data);
             $password = password_hash($password, PASSWORD_DEFAULT);
             $data['password'] = $password;
-            $userModel->save($data);
+            // print_r($userModel);
+            // print_r($data);
+            //  $userModel->insert( 'users', $data);
+
+            // $userModel->getInsertID($data)
+            
+            $userModel->insert($data);
+
             $data['success'] = 'User registered successfully!';
             return view('register', $data);
+
         } else {
             $data['errors'] = $validation->getErrors();
             return view('register', $data);
