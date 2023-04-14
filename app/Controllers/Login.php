@@ -2,15 +2,19 @@
 
 namespace App\Controllers;
 
-use \App\Models\UserModel;
+use App\Models\UserModel;
 
 class Login extends BaseController
 {
+    public function __construct()
+    {
+        $this->session = \Config\Services::session();
+    }
+
     public function index()
-    { 
-       
+    {
+        // Display login page
         echo view('login');
-        
     }
 
     public function do_login()
@@ -21,38 +25,41 @@ class Login extends BaseController
         $password = $this->request->getPost('password');
 
         $result = $userModel->where('email', $email)->first();
-       // print_r($_POST);
-
 
         if ($result)
         {
             if (password_verify($password, $result->password))
             {
-                $user = $result;
-                $this->session->set("user",$result);
+                // Set user data in session
+                $userData = [
+                    'id' => $result->id,
+                    'name' => $result->name,
+                    'email' => $result->email,
+                    'isLoggedIn' => true
+                ];
+                $this->session->set($userData);
                 return redirect()->to('/dashboard');
             }
             else
             {
-                // echo "Incorrect password!";
                 $data['error'] = "Incorrect password!";
             }
         }
         else
         {
-            // echo "Email address not found!";
             $data['error'] = "Email address not found!";
         }
-        $data['title'] = 'Login';
-        echo view('common/header', $data);
+
+        // Display login page with error message
         echo view('login', $data);
-        echo view('common/footer');
-    } 
+    }
 
     public function logout()
-{
-    $this->session->sess_destroy();
-    redirect('login');
-}
+    {
+        // Destroy session
+        $this->session->destroy();
 
+        // Redirect to login page
+        return redirect()->to('/login');
+    }
 }

@@ -1,22 +1,16 @@
 <?php
-
 namespace App\Controllers;
-
 use App\Models\UserModel;
 // $validation = \Config\Services::validation();
 use CodeIgniter\Controller;
-
 class Register extends Controller
 {
     public function index()
     {
         return view('register');
     }
-
-
     public function do_register()
     {
-      
         // $userModel = new UserModel();
         $validation = \Config\Services::validation();
         helper('form', 'url');
@@ -41,7 +35,6 @@ class Register extends Controller
             ]
         ];
         
-
           $validation->setRules($rules);
         //   var_dump($validation);
 
@@ -68,9 +61,8 @@ class Register extends Controller
             // print_r($userModel);
             // print_r($data);
             //  $userModel->insert( 'users', $data);
+            // $userModel->getInsertID($data);
 
-            // $userModel->getInsertID($data)
-            
             $userModel->insert($data);
 
             $data['success'] = 'User registered successfully!';
@@ -81,4 +73,5 @@ class Register extends Controller
             return view('register', $data);
         }
 
-    }}
+    }
+}
