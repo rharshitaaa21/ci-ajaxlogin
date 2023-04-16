@@ -37,7 +37,7 @@
   <hr class="my-4">
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <p class="lead">
-    <a class="btn btn-warning btn-lg" href="<?= site_url("login");?>" role="button">Logout</a>
+    <a class="btn btn-warning btn-lg" id="logout"  href="<?= site_url("login/logout"); ?>" role="button">Logout</a>
   </p>
 
 </div>

@@ -11,6 +11,8 @@ class Login extends BaseController
     {
          
         $this->session 	= \Config\Services::session();
+        $this->session->start();
+        
         //  print_r($this->session);
     }
 
@@ -37,13 +39,14 @@ class Login extends BaseController
             {
                 // var_dump($password);
                 // var_dump($result);
+
                 $userData = [
                     'id' => $result->id,
                      'isLoggedIn' => true
                 ];
                 // print_r($result->id);
                 // print_r($userData);
-                $this->session->setFlashdata('name',$result->name);
+                // $this->session->setFlashdata('name',$result->name);
 
                 // var_dump($result);
                 // var_dump($result->name);
@@ -70,11 +73,13 @@ class Login extends BaseController
     {
       
     $this->session->remove('isLoggedIn');
-    $this->session->destroy();
+    //    var_dump('isLoggedIn'); 
+     $this->session->destroy();
 
     // Redirect to login page
-    return redirect()->to('/login');
-}
+     return redirect()->to('/login');
+    echo view('dashboard', $data);
+ }
 
     
 }
