@@ -64,7 +64,7 @@
         <input name="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="12345" required>
       </div>
 
-      <button type="submit" class="btn btn-primary" formaction="<?= site_url("register/do_register"); ?>">Register</button>
+      <button type="submit" class="btn btn-primary" >Register</button>
     </form>
   </div>
 </div>

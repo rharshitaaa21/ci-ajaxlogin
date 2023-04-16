@@ -47,7 +47,7 @@
     <input type="password" class="form-control" id="password    " name="password"
       aria-describedby="emailHelp" placeholder="Enter Password" required>
   </div>
-   <button type="submit" class="btn btn-primary" value="Login" formaction="<?= site_url("login/do_login"); ?>">Login</button>
+   <button type="submit" class="btn btn-primary" value="Login" >Login</button>
 </form>
 </div>
 </div>
