@@ -27,11 +27,11 @@ class Register extends Controller
             ],
             'password' => [
                 'label' => 'Password',
-                'rules' => 'required|min_length[5]'
+                'rules' => 'required|min_length[5]|alpha_numeric'
             ],
             'confirmpassword' => [
                 'label' => 'Confirm Password',
-                'rules' => 'matches[password]'
+                'rules' => 'required|matches[password]'
             ]
         ];
         

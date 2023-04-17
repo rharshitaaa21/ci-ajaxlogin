@@ -32,11 +32,13 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 use \App\Models\UserModel;
 
-$routes->get('/', 'Home::index');
+// $routes->get('/', 'Home::index');
+$routes->get('/', 'Login::index');
 $routes->get('login', 'Login::index');
 $routes->get('register', 'Register::index');
 $routes->post('register', "Register::do_register");
 $routes->post('login', "Login::do_login");
+
 // $routes->post('dashboard', "Dashboard::dashboard");
 
 
