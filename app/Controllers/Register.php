@@ -55,23 +55,41 @@ class Register extends Controller
 
         $userModel = new UserModel();
         if ($validation->run($data)) {
+
+
+
+
             // print_r($data);
             $password = password_hash($password, PASSWORD_DEFAULT);
             $data['password'] = $password;
+
             // print_r($userModel);
             // print_r($data);
             //  $userModel->insert( 'users', $data);
             // $userModel->getInsertID($data);
 
             $userModel->insert($data);
+            
+            $array = array(
+                'success'=> '<div class="alert alert-success"> User registered successfully!</div>'
+            );
 
-            $data['success'] = 'User registered successfully!';
-            return view('register', $data);
+            // $data['success'] = 'User registered successfully!';
+            // return view('register', $data);
 
         } else {
-            $data['errors'] = $validation->getErrors();
-            return view('register', $data);
+            // $data['errors'] = $validation->getErrors();
+            $array= array(
+                'error' => true,
+                'email_err' => form_error('email'),
+                'password_err' => form_error('password'),
+                'confirm_err' => form_error('confirm password'),);
+
+
+        //    return view('register', $data);
         }
+        echo json_encode($aray);
+        echo view('regiter', $data);
 
     }
 }

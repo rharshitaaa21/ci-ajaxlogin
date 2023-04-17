@@ -1,6 +1,8 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+<link type="text/javascript" href="./logic.js">
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">29Kreativ</a>
@@ -28,22 +30,10 @@
     <h1>Register Here</h1>
     <hr>
 
-    <?php if (isset($errors)) : ?>
-      <div class="alert alert-danger">
-        <?php foreach ($errors as $error) : ?>
-          <?= esc($error) ?><br>
-        <?php endforeach ?>
-      </div>
-    <?php endif ?>
-    
+    <span id="success-msg"></span>
+    <span id="error-msg"></span>
 
-    <?php if (isset($success)) : ?>
-      <div class="alert alert-success">
-        <?= esc($success) ?>
-      </div>
-    <?php endif ?> 
-
-    <form method="post" action="<?= base_url("register/do_register"); ?>">
+    <form method="post" id="register-frm" action="<?= base_url("register/do_register"); ?>">
       <div class="form-group mb-3">
         <label for="name">Full Name</label>
         <input name="name" type="text" class="form-control" id="name"  placeholder="John Doe" required>
@@ -51,20 +41,21 @@
 
       <div class="form-group mb-3">
         <label for="email">Email address</label>
-        <input name="email" type="email" class="form-control" id="email" placeholder="johndoe@gmail.com" required>
+        <input name="email" type="email" id="email_err" class="form-control" id="email" placeholder="johndoe@gmail.com" required>
       </div>
 
       <div class="form-group mb-3">
         <label for="password">Password</label>
-        <input name="password" type="password" class="form-control" id="password"  placeholder="12345" required>
+        <input name="password" id="password_err" type="password" class="form-control" id="password"  placeholder="12345" required>
       </div>
 
       <div class="form-group mb-3">
         <label for="confirmpassword">Confirm Password</label>
-        <input name="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="12345" required>
+        <input name="confirmpassword" id="confirm_err" type="password" class="form-control" id="confirmpassword" placeholder="12345" required>
       </div>
 
-      <button type="submit" class="btn btn-primary" >Register</button>
+      <button type="submit" id="register-btn" class="btn btn-primary" >Register</button>
     </form>
   </div>
 </div>
+
