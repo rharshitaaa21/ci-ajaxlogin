@@ -11,10 +11,12 @@ class Register extends Controller
     {
         return view('register');
     }
-
     public function do_register()
 {
-    $validation = \Config\Services::validation();
+
+     $validation = \Config\Services::validation();
+    // $this->load->library('form_validation');
+    // $this->load->library('session');
 
     $rules = [
         'name' => [
@@ -51,27 +53,22 @@ class Register extends Controller
 
     if ($validation->run($data)) {
         $userModel = new UserModel();
+        // print_r($userModel);
 
         $password = password_hash($password, PASSWORD_DEFAULT);
         $data['password'] = $password;
 
         $userModel->insert($data);
+       echo json_encode(['success'=>'User added successfully.']);
 
-        $response = ['status' => 'success', 'message' => 'User registered successfully!'];
-        return $this->response->setJSON($response);
         return view('register', $data);
-        // return;
-    } else {
-        $response = ['status' => 'error', 'message' => $validation->getErrors()];
-        return $this->response->setJSON($response);
-        return view('register', $data);
-        // return;
+    
     }
-}
-
-public function register()
-{
-    var_dump("check");
-    return view('register');
+     else {
+        $errors = $validation->getErrors();
+        echo json_encode(['error' => $errors]);
+         return view('register', $data);
+        
+    }   
 }
 }

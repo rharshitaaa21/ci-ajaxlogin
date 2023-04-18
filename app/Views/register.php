@@ -32,19 +32,9 @@
   <div class="card-body">
     <h1>Register Here</h1>
     <hr>
+        <div class="alert alert-danger print-error-msg" style="display:none"></div>
 
-    <!-- <span id="success-msg"></span> -->
-    <!-- <span id="error-msg"></span> -->
-    <!-- <div class="row">
-            <div class="col-lg-4 offset-lg-4" id="alert">
-                <div class="alert alert-primary">
-                    <strong id="result"></strong>
-                </div>
-            </div>
-        </div> -->
-
-        <div id="errorMessages"></div>
-    <form method="post" id="register-frm" action="<?= base_url("register/do_register"); ?>">
+ <form method="post" id="register-frm" action="<?= base_url("register/do_register"); ?>">
       <div class="form-group mb-3">
         <label for="name">Full Name</label>
         <input name="name" type="text" class="form-control" id="name" placeholder="John Doe" required>
@@ -66,9 +56,9 @@
         <label for="confirmpassword">Confirm Password</label>
         <input name="confirmpassword" id="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="12345" required>
       </div>
-      
 
-      <button type="submit" id="register-btn" class="btn btn-primary" >Register</button>
+
+      <button type="submit"  class="btn btn-primary register-btn" >Register</button>
     </form>
   </div>
 </div>

@@ -1,21 +1,29 @@
-$(document).ready(function() {
-    $('#register-form').on('submit', function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: '/do_register',
-            type: 'POST',
-            data: $('#register-form').serialize(),
-            dataType: 'json',
-            success: function(response) {
-                if (response.status === 'success') {
-                    alert(response.message);
-                    window.location.href = '/login';
-                } else {
-                    alert(response.message.email);
-                    alert(response.message.password);
-                    // display error messages for other fields
-                }
-            }
-        });
+
+
+$(document).ready(function(){
+    $('#register-frm').on('submit', function(e){
+      e.preventDefault();
+      var name = $('#name').val();
+      var email = $('#email').val();
+      var password = $('#password').val();
+      var confirmpassword = $('#confirmpassword').val();
+      $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),
+        data: {name:name, email:email, password:password, confirmpassword:confirmpassword},
+        success: function(response){
+          if(response.status == 'error'){
+            $('.print-error-msg').html('');
+            $.each(response.error, function(key, value){
+              $('.print-error-msg').show();
+              $('.print-error-msg').append('<p>'+value+'</p>');
+            });
+          }else{
+            $('.print-error-msg').hide();
+            $('#register-frm')[0].reset();
+            alert('Registration successful');
+          }
+        }
+      });
     });
-});
+  });
