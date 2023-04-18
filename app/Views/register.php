@@ -2,6 +2,9 @@
 <link type="text/javascript" href="./logic.js">
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,9 +33,17 @@
     <h1>Register Here</h1>
     <hr>
 
-    <span id="success-msg"></span>
-    <span id="error-msg"></span>
+    <!-- <span id="success-msg"></span> -->
+    <!-- <span id="error-msg"></span> -->
+    <!-- <div class="row">
+            <div class="col-lg-4 offset-lg-4" id="alert">
+                <div class="alert alert-primary">
+                    <strong id="result"></strong>
+                </div>
+            </div>
+        </div> -->
 
+        <div id="errorMessages"></div>
     <form method="post" id="register-frm" action="<?= base_url("register/do_register"); ?>">
       <div class="form-group mb-3">
         <label for="name">Full Name</label>
@@ -58,4 +69,3 @@
     </form>
   </div>
 </div>
-

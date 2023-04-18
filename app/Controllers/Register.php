@@ -1,21 +1,21 @@
 <?php
+
 namespace App\Controllers;
+
 use App\Models\UserModel;
-// $validation = \Config\Services::validation();
 use CodeIgniter\Controller;
+
 class Register extends Controller
 {
     public function index()
     {
         return view('register');
     }
+
     public function do_register()
     {
-        // $userModel = new UserModel();
         $validation = \Config\Services::validation();
-        helper('form', 'url');
-        // print_r($validation);
-
+    
         $rules = [
             'name' => [
                 'label' => 'Full Name',
@@ -34,62 +34,37 @@ class Register extends Controller
                 'rules' => 'required|matches[password]'
             ]
         ];
-        
-          $validation->setRules($rules);
-        //   var_dump($validation);
-
+    
+        $validation->setRules($rules);
+    
         $name = $this->request->getPost('name');
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $confirmpassword = $this->request->getPost('confirmpassword');
-
-        // var_dump($name);
+    
         $data = [
             'name' => $name,
             'email' => $email,
             'password' => $password,
-             'confirmpassword' => $confirmpassword,
-           
+            'confirmpassword' => $confirmpassword
         ];
-        //  print_r($data);
-
-        $userModel = new UserModel();
+    
         if ($validation->run($data)) {
-
-
-
-
-            // print_r($data);
+            $userModel = new UserModel();
+    
             $password = password_hash($password, PASSWORD_DEFAULT);
             $data['password'] = $password;
-
-            // print_r($userModel);
-            // print_r($data);
-            //  $userModel->insert( 'users', $data);
-            // $userModel->getInsertID($data);
-
+    
             $userModel->insert($data);
-            
-            $array = array(
-                'success'=> '<div class="alert alert-success"> User registered successfully!</div>'
-            );
-
-            // $data['success'] = 'User registered successfully!';
-            // return view('register', $data);
-
+    
+            $response = ['status' => 'success', 'message' => 'User registered successfully!'];
+            return $this->response->setJSON($response);
         } else {
-            // $data['errors'] = $validation->getErrors();
-            $array= array(
-                'error' => true,
-                'email_err' => form_error('email'),
-                'password_err' => form_error('password'),
-                'confirm_err' => form_error('confirm password'),);
-
-
-        //    return view('register', $data);
+            $response = ['status' => 'error', 'message' => $validation->getErrors()];
+            return $this->response->setJSON($response);
         }
-        echo json_encode($aray);
-        echo view('regiter', $data);
-
+        echo view('register', $data);
     }
-}
+            }
+
+    
