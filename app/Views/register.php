@@ -47,23 +47,26 @@
     <form method="post" id="register-frm" action="<?= base_url("register/do_register"); ?>">
       <div class="form-group mb-3">
         <label for="name">Full Name</label>
-        <input name="name" type="text" class="form-control" id="name"  placeholder="John Doe" required>
+        <input name="name" type="text" class="form-control" id="name" placeholder="John Doe" required>
       </div>
 
       <div class="form-group mb-3">
         <label for="email">Email address</label>
-        <input name="email" type="email" id="email_err" class="form-control" id="email" placeholder="johndoe@gmail.com" required>
+        <input name="email" type="email" id="email" class="form-control" id="email" placeholder="johndoe@gmail.com" required>
       </div>
+
 
       <div class="form-group mb-3">
         <label for="password">Password</label>
-        <input name="password" id="password_err" type="password" class="form-control" id="password"  placeholder="12345" required>
+        <input name="password" id="password" type="password" class="form-control" id="password"  placeholder="12345" required>
       </div>
+      
 
       <div class="form-group mb-3">
         <label for="confirmpassword">Confirm Password</label>
-        <input name="confirmpassword" id="confirm_err" type="password" class="form-control" id="confirmpassword" placeholder="12345" required>
+        <input name="confirmpassword" id="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="12345" required>
       </div>
+      
 
       <button type="submit" id="register-btn" class="btn btn-primary" >Register</button>
     </form>

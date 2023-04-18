@@ -1,23 +1,19 @@
-
 $(document).ready(function() {
-    $("#register-frm").submit(function(event) {
+    $('#register-form').on('submit', function(event) {
         event.preventDefault();
-        var formData = $(this).serialize();
         $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('register/do_register'); ?>",
-            data: formData,
-            dataType: "json",
+            url: '/do_register',
+            type: 'POST',
+            data: $('#register-form').serialize(),
+            dataType: 'json',
             success: function(response) {
-                if (response.status == "success") {
+                if (response.status === 'success') {
                     alert(response.message);
-                    window.location.href = "<?php echo base_url('login'); ?>";
+                    window.location.href = '/login';
                 } else {
-                    var errorHTML = '';
-                    $.each(response.message, function(key, value) {
-                        errorHTML += '<div class="alert alert-danger">' + value + '</div>';
-                    });
-                    $('#errorMessages').html(errorHTML);
+                    alert(response.message.email);
+                    alert(response.message.password);
+                    // display error messages for other fields
                 }
             }
         });
