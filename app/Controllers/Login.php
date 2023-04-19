@@ -35,6 +35,7 @@ class Login extends BaseController
 
         if ($result)
         {
+            
             if (password_verify($password, $result->password))
             {
                 // var_dump($password);
@@ -44,25 +45,24 @@ class Login extends BaseController
                     'id' => $result->id,
                      'isLoggedIn' => true
                 ];
-                // print_r($result->id);
-                // print_r($userData);
-                // $this->session->setFlashdata('name',$result->name);
-
-                // var_dump($result);
-                // var_dump($result->name);
+                
 
                 $this->session->set($userData);
                 
-                return redirect()->to('/dashboard');
+                // return redirect()->to('/dashboard');
+                return $this->response->setJSON(['status' => 'success']);
             }
             else
             {
-                $data['error'] = "Incorrect password!";
+                // $data['error'] = "Incorrect password!";
+                return $this->response->setJSON(['status' => 'error', 'message' => 'Incorrect password!']);
             }
-        }
+            }
+        
         else
         {
-            $data['error'] = "Email address not found!";
+            // $data['error'] = "Email address not found!";
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Email address not found!']);
         }
 
         // Display login page with error message

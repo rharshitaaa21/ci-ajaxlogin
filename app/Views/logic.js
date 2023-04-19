@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
     $('#register-frm').on('submit', function(e){
       e.preventDefault();
@@ -7,9 +5,10 @@ $(document).ready(function(){
       var email = $('#email').val();
       var password = $('#password').val();
       var confirmpassword = $('#confirmpassword').val();
+
       $.ajax({
         type: "POST",
-        url: $(this).attr('action'),
+        url: 'register/do_register',
         data: {name:name, email:email, password:password, confirmpassword:confirmpassword},
         success: function(response){
           if(response.status == 'error'){
@@ -26,4 +25,27 @@ $(document).ready(function(){
         }
       });
     });
-  });
+
+
+        $("#login-form").submit(function(e) {
+          e.preventDefault();
+          var form = $(this);
+          var url = form.attr("action");
+          $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(), 
+            success: function(response) {
+              if (response.status == "success") {
+             
+                window.location.href = "/dashboard";
+              } else if (response.status == "error") {
+                
+                
+                $("#error-message").html(response.message).show();
+              }
+            }
+          });
+        });
+      });
+ 

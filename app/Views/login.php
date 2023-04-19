@@ -1,6 +1,7 @@
 
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
+<script src="./logic.js">
 
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
 
@@ -33,10 +34,9 @@
     <div class="card-body">
 <h1>Login Here</h1>
 <hr>
-<?php if(isset($error)): ?>
-<div class="alert alert-danger"><?= $error ?></div>
-<?php endif; ?>
-<form method="post"  action="<?=base_url("login");?>">
+
+<form method="post" action="/login/do_login">
+<?= csrf_field() ?>
   <div class="form-group mb-3">
     <label for="email">Email address</label>
     <input type="email" class="form-control" id="email" name="email"  aria-describedby="emailHelp" placeholder="Enter email" required>
@@ -49,5 +49,6 @@
   </div>
    <button type="submit" class="btn btn-primary" value="Login" >Login</button>
 </form>
+<div id="error-message" class="text-danger" style="display: none;"></div>
 </div>
 </div>
