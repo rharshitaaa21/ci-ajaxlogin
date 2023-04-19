@@ -34,8 +34,14 @@
     <div class="card-body">
 <h1>Login Here</h1>
 <hr>
+<div id="error"></div>
+<div class="col-lg-4 offset-lg-4" id="alert" style="display:none"  >
+                <div class="alert alert-primary">
+                    <strong id="result"></strong>
+                </div>
+ </div>
 
-<form method="post" action="/login/do_login">
+<form method="post" action="/login/do_login" id="login-form">
 <?= csrf_field() ?>
   <div class="form-group mb-3">
     <label for="email">Email address</label>

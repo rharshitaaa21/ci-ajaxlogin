@@ -12,13 +12,10 @@ class Login extends BaseController
          
         $this->session 	= \Config\Services::session();
         $this->session->start();
-        
-        //  print_r($this->session);
     }
 
     public function index()
     {
-        // Display login page
         echo view('login');
        
     }
@@ -50,28 +47,34 @@ class Login extends BaseController
                 $this->session->set($userData);
                 
                 // return redirect()->to('/dashboard');
-                return $this->response->setJSON(['status' => 'success']);
+                // return $this->response->setJSON(['status' => 'success']);
+                echo 'Okay';
             }
             else
             {
-                // $data['error'] = "Incorrect password!";
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Incorrect password!']);
+                $response = 'Login Failed! Incorrect Password';
+                echo  $response ;
+                //  $data['error'] = "Incorrect password!";
+                //  return $this->response->setJSON(['status' => 'error', 'message' => 'Incorrect password!']);
             }
             }
         
         else
         {
+            $response= 'Email does not exist!';
+             echo $response;
             // $data['error'] = "Email address not found!";
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Email address not found!']);
+            // return $this->response->setJSON(['status' => 'error', 'message' => 'Email address not found!']);
         }
 
-        // Display login page with error message
-        echo view('login', $data);
+       
+       
+         echo view('login');
+       
     }
 
     public function logout()
     {
-      
     $this->session->remove('isLoggedIn');
     //    var_dump('isLoggedIn'); 
      $this->session->destroy();
