@@ -87,7 +87,7 @@
                           console.log(response);
                             if(response == "Okay"){
                               console.log('inside okay')
-                                window.location.href="Dashboard/index";
+                                window.location.href="/dashboard";
                             }
                             else{
                               console.log('inside error display')

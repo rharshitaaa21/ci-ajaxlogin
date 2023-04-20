@@ -41,8 +41,7 @@ $routes->post('login', "Login::do_login");
 // $routes->post('login', "Login::login_view");
 $routes->post('login', "Login::validate_login");
 // $routes->post('login', "Login::do_login");
-
-// $routes->post('dashboard', "Dashboard::dashboard");
+ $routes->post('dashboard', "Dashboard::dashboard");
 
 
 /*
