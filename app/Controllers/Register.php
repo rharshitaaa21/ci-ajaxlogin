@@ -63,12 +63,12 @@ class Register extends Controller
     }
      else {
 
-        $errors = $validation->getErrors();
-        return $errors;
-        // console.log("this is it");
-        // var_dump("hiie");
+        $response = $validation->getErrors();
+        print_r($response);
+        return $response;
+       
         // $errors = $validation->getErrors();
-        print_r($errors);
+        // print_r($errors);
     //   $error_messages = [];
 
     // foreach ($errors as $error) {

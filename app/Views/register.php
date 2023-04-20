@@ -124,9 +124,10 @@
                 }
                 else {
           console.log(response.errors);
-            console.log('inside error');
+            console.log('inside error'); 
+            console.log(response); 
             $(".alert-danger").show();
-            $("#error_message").html(response.errors);
+            $("#error_message").html(response);
         }
             },
             error: function(xhr, status, error) {
