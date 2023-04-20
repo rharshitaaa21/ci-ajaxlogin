@@ -121,18 +121,27 @@
                     console.log('inside okay');
                     $(".alert-success").show();
                     $("#success_message").html("User Registered Successfully! Please Login");
-                };
+                }
+                else {
+          console.log(response.errors);
+            console.log('inside error');
+            $(".alert-danger").show();
+            $("#error_message").html(response.errors);
+        }
             },
             error: function(xhr, status, error) {
-                console.log('inside error display')
-                $(".alert-danger").show();
-                $("#error_message").html(xhr.responseText);
-            }                                            
+        console.log("inside error block");
+        var errors = JSON.parse(xhr.responseText);
+        var errorString = "";
+        $.each(errors, function(index, value) {
+            errorString += value + "<br>";
+        });
+        $("#alert-danger").show();
+        $("#error_message").html(errorString);
+    }                                            
         });
     }
     return true;
 });
   });
  </script>
-
-

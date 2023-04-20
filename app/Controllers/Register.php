@@ -62,20 +62,26 @@ class Register extends Controller
         // echo view('register', $data);
     }
      else {
-        console.log("this is it");
-        var_dump("hiie");
+
         $errors = $validation->getErrors();
-        $response = [];
-        foreach ($errors as $error) {
-        $response[] = $error->getMessage();
-        }
-         print_r($response);
-        return $response;
+        return $errors;
+        // console.log("this is it");
+        // var_dump("hiie");
+        // $errors = $validation->getErrors();
+        print_r($errors);
+    //   $error_messages = [];
+
+    // foreach ($errors as $error) {
+    // $error_messages[] = $error->getMessage();           
+    // }
+
+// print_r($error_messages);
+
      } 
    
-    //   $userdata = [$name, $email, $password,$confirmpassword, $response];
+      $userdata = [$name, $email, $password,$confirmpassword, $response];
 
-    //   return view('register', $userdata);  
+      return view('register', $userdata);  
 }
 
 }
