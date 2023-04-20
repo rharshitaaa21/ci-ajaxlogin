@@ -1,10 +1,6 @@
-
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-<script src="./logic.js">
-
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
-
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">29Kreativ</a>
@@ -34,27 +30,79 @@
     <div class="card-body">
 <h1>Login Here</h1>
 <hr>
-<div id="error"></div>
-<div class="col-lg-4 offset-lg-4" id="alert" style="display:none"  >
-                <div class="alert alert-primary">
-                    <strong id="result"></strong>
-                </div>
- </div>
+<div class="btn-danger" id="error_message"></div>
 
 <form method="post" action="/login/do_login" id="login-form">
-<?= csrf_field() ?>
   <div class="form-group mb-3">
-    <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" name="email"  aria-describedby="emailHelp" placeholder="Enter email" required>
-    <!-- <small id="email" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    <label for="email">Email address</label> <span id="error_email" class="text-danger ms-3"></span>
+    <input type="email" class="form-control " id="email"  name="email" placeholder="Enter email" required>
+
   </div>
   <div class="form-group mb-3">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password    " name="password"
-      aria-describedby="emailHelp" placeholder="Enter Password" required>
+    <label for="password">Password</label> <span id="error_password" class="text-danger ms-3"></span>
+    <input type="password" class="form-control " id="password" name="password" placeholder="Enter Password" required>
   </div>
-   <button type="submit" class="btn btn-primary" value="Login" >Login</button>
+   <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
 </form>
-<div id="error-message" class="text-danger" style="display: none;"></div>
 </div>
 </div>
+
+<script>
+ $(document).ready(function(){
+    $(document).on('click','.login-btn', function(){
+        if($.trim($('#email').val()).length == 0){
+            error_email= 'Please Enter Email Address';
+            $('#error_email').text(error_email);
+        }
+        else{
+            error_email= '';
+            $('#error_email').text(error_email);
+        }
+
+        if($.trim($('#password').val()).length == 0){
+            error_password= 'Please Enter Password';
+            $('#error_password').text(error_password);
+        }
+        else{
+            error_password= '';
+            $('#error_password').text(error_password);
+        }
+
+        if(error_email != '' || error_password != '') {
+            return false;
+        }
+        else {
+           
+          $("#login-btn").click(function(e){
+                if(document.getElementById('login-form').checkValidity()){
+                    e.preventDefault();
+                    $.ajax({
+                        url: 'login.php',
+                        method: 'post',
+                        data: $("#login-form").serialize()+'&action=login',
+                        success: function(response){
+                            if(response === "Okay"){
+                                window.location='dashboard.php';
+                            }
+                            else{
+                              
+                                $("#error_message").html(response);
+                            }
+                        }
+                    }).fail(function(xhr, status, error) {
+                        var errors = JSON.parse(xhr.responseText);
+                        var errorString = "";
+                        $.each(errors, function(index, value){
+                            errorString += value + "<br>";
+                        });
+                        
+                        $("#error_message").html(errorString);
+                    });
+                }
+              
+                return true;
+              });
+    });
+});
+
+</script>

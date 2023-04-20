@@ -19,60 +19,69 @@ class Login extends BaseController
         echo view('login');
        
     }
-
+    
     public function do_login()
     {
-      
         $userModel = new UserModel();
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $result = $userModel->where('email', $email)->first();
 
-        // print_r($userModel);
+        $data = [$email, $password];
+    
+        if ($result) { 
 
-        if ($result)
-        {
-            
-            if (password_verify($password, $result->password))
-            {
-                // var_dump($password);
-                // var_dump($result);
+            // helper(['form']);
+            // $validation = \Config\Services::validation();
+        
+            // $validation->setRules([
+            //     'email' => 'required|valid_email',
+            //     'password' => 'required|min_length[6]'
+            // ]);
+        
+            // if (!$validation->withRequest($this->request)->run()) {
+            //     // echo view('login');
+            //     return $this->response->setJSON([
+            //         'status' => 'error',
+            //         'errors' => $validation->getErrors()
+            //     ]);
+            //     // $response = $validation->getErrors();
+            //     // echo $response;
+            // }
+            // else{
 
+            if (password_verify($password, $result->password)) {
                 $userData = [
                     'id' => $result->id,
-                     'isLoggedIn' => true
+                    'isLoggedIn' => true
                 ];
-                
 
                 $this->session->set($userData);
-                
-                // return redirect()->to('/dashboard');
-                // return $this->response->setJSON(['status' => 'success']);
-                echo 'Okay';
+                $response = 'Okay';
             }
-            else
-            {
-                $response = 'Login Failed! Incorrect Password';
-                echo  $response ;
-                //  $data['error'] = "Incorrect password!";
-                //  return $this->response->setJSON(['status' => 'error', 'message' => 'Incorrect password!']);
-            }
-            }
-        
-        else
-        {
-            $response= 'Email does not exist!';
-             echo $response;
-            // $data['error'] = "Email address not found!";
-            // return $this->response->setJSON(['status' => 'error', 'message' => 'Email address not found!']);
-        }
+                // echo view('login', $userData);  
+                // return $this->response->setJSON([
+                //             'status' => 'success',
+                //             'message' => 'Login successful!'
+                //         ]);
+                        // echo view('login', $userData);
+                // $response = 'Login Successful!';
+                // echo $response;
+                else {   $response = 'Login Failed! Incorrect Password';
+                    
+                }
+            } 
+            else{
+                $response= 'User does not exist!';
+               
+            }  
+            $data=[$email, $password, $response];
+            // $data = [$response];
+            print_r($data);
+            echo view('login', $data);
 
-       
-       
-         echo view('login');
-       
-    }
-
+}
+    
     public function logout()
     {
     $this->session->remove('isLoggedIn');
@@ -81,8 +90,12 @@ class Login extends BaseController
 
     // Redirect to login page
      return redirect()->to('/login');
-    echo view('dashboard', $data);
+    echo view('dashboard');
  }
 
     
 }
+
+
+
+
