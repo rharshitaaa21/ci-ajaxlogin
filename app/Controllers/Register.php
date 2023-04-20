@@ -13,7 +13,6 @@ class Register extends Controller
     }
     public function do_register()
 {
-
      $validation = \Config\Services::validation();
 
     $rules = [
@@ -58,7 +57,6 @@ class Register extends Controller
 
         $userModel->insert($data);
        echo json_encode(['success'=>'User added successfully.']);
-
         return view('register', $data);
     
     }

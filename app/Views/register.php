@@ -1,10 +1,6 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
-<link type="text/javascript" href="./logic.js">
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./style.css">
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,10 +28,10 @@
   <div class="card-body">
     <h1>Register Here</h1>
     <hr>
-    <div class="alert alert-danger" id="error_message"><strong id="result"></strong></div>
-            
+   
+<div class="alert alert-danger" id="error_message"><strong id="result"></strong></div>  
 
- <form method="post" id="register-frm" action="<?= base_url("register/do_register"); ?>">
+ <form method="post" action="/register/do_register" id="register-form">
       <div class="form-group mb-3">
         <label for="name">Full Name</label><span id="error_name" class="text-danger ms-3"></span>
         <input name="name" type="text" class="form-control"  id="name" placeholder="John Doe" required>
@@ -59,14 +55,15 @@
       </div>
 
 
-      <button type="submit"  class="btn btn-primary register-btn" id="submit-btn" >Register</button>
+      <button type="submit" class="btn btn-primary register-btn" id="save-btn" >Register</button>
     </form>
   </div>
 </div>
 
-
+<script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
 
 <script>
+
    $(".alert").hide();
   $(document).ready(function(){
      $(document).on('click','.register-btn', function(){
@@ -110,13 +107,13 @@
          }
        });
 
-           $("#submit-btn").click(function(e){
-                 if(document.getElementById('login-form').checkValidity()){
+          $("#save-btn").click(function(e){
+            if(document.getElementById('register-form').checkValidity()){
                      e.preventDefault();
                      $.ajax({
-                         url: "<?php echo base_url('login/do_login')?>",
+                         url: "<?php echo base_url('register/do_register')?>",
                          method: 'post',
-                         data: $("#login-form").serialize()+'&action=login',
+                         data: $("#register-form").serialize()+'&action=register',
                          success: function(response){
                            console.log('inside success')
                            console.log(response);
@@ -144,6 +141,5 @@
                  return true;
                });
      });
-
 
  </script>

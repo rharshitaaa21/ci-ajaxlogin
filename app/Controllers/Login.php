@@ -60,14 +60,7 @@ class Login extends BaseController
                 $response = 'Okay'; 
                 return $response;
             }
-                // echo view('login', $userData);  
-                // return $this->response->setJSON([
-                //             'status' => 'success',
-                //             'message' => 'Login successful!'
-                //         ]);
-                        // echo view('login', $userData);
-                // $response = 'Login Successful!';
-                // echo $response;
+               
                 else {   $response = 'Login Failed! Incorrect Password';
                     return $response;
                     

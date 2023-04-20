@@ -33,16 +33,13 @@ $routes->set404Override();
 use \App\Models\UserModel;
 
 // $routes->get('/', 'Home::index');
+
 $routes->get('/', 'Login::index');
 $routes->get('login', 'Login::index');
 $routes->get('register', 'Register::index');
 $routes->post('register', "Register::do_register");
 $routes->post('login', "Login::do_login");
-// $routes->post('login', "Login::login_view");
-$routes->post('login', "Login::validate_login");
-// $routes->post('login', "Login::do_login");
- $routes->post('dashboard', "Dashboard::dashboard");
-
+$routes->post('dashboard', "Dashboard::dashboard");
 
 /*
  * --------------------------------------------------------------------

@@ -50,7 +50,6 @@
 
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
 
-<!-- <script src="./logic.js"> -->
   <script>
    $(".alert").hide();
   $(document).ready(function(){
