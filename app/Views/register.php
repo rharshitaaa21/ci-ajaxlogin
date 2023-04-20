@@ -107,44 +107,32 @@
          }
        });
 
-          $("#save-btn").click(function(e){
-            if(document.getElementById('register-form').checkValidity()){
-                     e.preventDefault();
-                     $.ajax({
-                         url: "<?php echo base_url('register/do_register')?>",
-                         method: 'post',
-                         data: $("#register-form").serialize()+'&action=register',
-                         success: function(response){
-                           console.log('inside success')
-                           console.log(response);
-                             if(response == "Okay"){
-                               console.log('inside okay');
-                               $(".alert-success").show();
-                               $("#success_message").html("User Registered Successfully! Please Login");
-                             }
-                             else{
-
-                               console.log('inside error display')
-                                 $(".alert-danger").show();
-                                 $("#error_message").html(response);
-                             }                         }
-                    })
-                  //.fail(function(xhr, status, error) {
-                  //      console.log('inside error');
-                  //        var errors = JSON.parse(xhr.responseText);
-                  //        var errorString = "";
-                  //        $.each(errors, function(index, value){
-                  //            errorString += value + "<br>";
-                  //        });
-                        
-                  //       $("#error_message").html(errorString);
-                  //    });
-                 }
-              
-                 return true;
-
-            // alert("hiie");
-               });
-     });
-
+       $("#save-btn").click(function(e){
+    if(document.getElementById('register-form').checkValidity()){
+        e.preventDefault();
+        $.ajax({
+            url: "<?php echo base_url('register/do_register')?>",
+            method: 'post',
+            data: $("#register-form").serialize()+'&action=register',
+            success: function(response){
+                console.log('inside success')
+                console.log(response);
+                if(response == "Okay"){
+                    console.log('inside okay');
+                    $(".alert-success").show();
+                    $("#success_message").html("User Registered Successfully! Please Login");
+                };
+            },
+            error: function(xhr, status, error) {
+                console.log('inside error display')
+                $(".alert-danger").show();
+                $("#error_message").html(xhr.responseText);
+            }                                            
+        });
+    }
+    return true;
+});
+  });
  </script>
+
+

@@ -60,9 +60,10 @@ class Register extends Controller
         $response = "Okay" ;
         return $response;
         // echo view('register', $data);
-    
     }
      else {
+        console.log("this is it");
+        var_dump("hiie");
         $errors = $validation->getErrors();
         $response = [];
         foreach ($errors as $error) {
@@ -70,11 +71,11 @@ class Register extends Controller
         }
          print_r($response);
         return $response;
-    } 
+     } 
    
-      $userdata = [$name, $email, $password,$confirmpassword, $response];
+    //   $userdata = [$name, $email, $password,$confirmpassword, $response];
 
-      return view('register', $userdata);  
+    //   return view('register', $userdata);  
 }
 
 }
