@@ -1,5 +1,6 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
+<link rel="stylesheet" src="./style.css">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">29Kreativ</a>
@@ -29,7 +30,15 @@
     <div class="card-body">
 <h1>Login Here</h1>
 <hr>
-<div class="btn-danger" id="error_message"></div>
+<!-- <div class="btn-danger" id="error_message"></div> -->
+<!-- <div class="alert alert-danger" id="error_message" role="alert" style="display:none"> -->
+
+                <div class="alert alert-danger" id="error_message">
+                    <strong id="result"></strong>
+                </div>
+            
+
+
 
 <form method="post" action="/login/do_login" id="login-form">
   <div class="form-group mb-3">
@@ -49,6 +58,7 @@
 
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
 <script>
+  $(".alert").hide();
  $(document).ready(function(){
     $(document).on('click','.login-btn', function(){
         if($.trim($('#email').val()).length == 0){
@@ -79,7 +89,7 @@
                 if(document.getElementById('login-form').checkValidity()){
                     e.preventDefault();
                     $.ajax({
-                        url: "<?php echo base_url('login/do_login') ?>",
+                        url: "<?php echo base_url('login/do_login')?>",
                         method: 'post',
                         data: $("#login-form").serialize()+'&action=login',
                         success: function(response){
@@ -91,7 +101,7 @@
                             }
                             else{
                               console.log('inside error display')
-                              
+                                $(".alert").show();
                                 $("#error_message").html(response);
                             }
                         }
