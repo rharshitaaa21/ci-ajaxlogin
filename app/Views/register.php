@@ -120,23 +120,25 @@
                              if(response == "Okay"){
                                console.log('inside okay');
                                $(".alert-success").show();
-                               $("#success_message").html("User Registered Successfully!");
+                               $("#success_message").html("User Registered Successfully! Please Login");
                              }
                              else{
+
                                console.log('inside error display')
                                  $(".alert-danger").show();
                                  $("#error_message").html(response);
                              }                         }
-                   }).fail(function(xhr, status, error) {
-                       console.log('inside error');
-                         var errors = JSON.parse(xhr.responseText);
-                         var errorString = "";
-                         $.each(errors, function(index, value){
-                             errorString += value + "<br>";
-                         });
+                    })
+                  //.fail(function(xhr, status, error) {
+                  //      console.log('inside error');
+                  //        var errors = JSON.parse(xhr.responseText);
+                  //        var errorString = "";
+                  //        $.each(errors, function(index, value){
+                  //            errorString += value + "<br>";
+                  //        });
                         
-                        $("#error_message").html(errorString);
-                     });
+                  //       $("#error_message").html(errorString);
+                  //    });
                  }
               
                  return true;

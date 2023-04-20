@@ -64,16 +64,17 @@ class Register extends Controller
     }
      else {
         $errors = $validation->getErrors();
-        // echo json_encode(['error' => $errors]);
-        //  echo view('register', $data);
-        
+        $response = [];
+        foreach ($errors as $error) {
+        $response[] = $error->getMessage();
+        }
+         print_r($response);
+        return $response;
     } 
-    // echo json_encode(['error' => $errors]);
-    // // array_push($data, $response);
-    // var_dump($response);
-    $userdata = [$name, $email, $password,$confirmpassword, $response];
+   
+      $userdata = [$name, $email, $password,$confirmpassword, $response];
 
-    return view('register', $userdata);  
+      return view('register', $userdata);  
 }
 
 }
