@@ -63,19 +63,19 @@ class Register extends Controller
     }
      else {
 
-        $response = $validation->getErrors();
-        print_r($response);
-        return $response;
+            $errors = $validation->getErrors();
+            $err = [];
+
+            foreach ($errors as $key => $error) {
+                $err[] = $error;
+            }
+
+            $response = implode('<br>', $err);
+            // print_r($response);
+            return $response;
+
+
        
-        // $errors = $validation->getErrors();
-        // print_r($errors);
-    //   $error_messages = [];
-
-    // foreach ($errors as $error) {
-    // $error_messages[] = $error->getMessage();           
-    // }
-
-// print_r($error_messages);
 
      } 
    

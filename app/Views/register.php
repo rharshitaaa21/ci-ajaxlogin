@@ -125,7 +125,8 @@
                 else {
           console.log(response.errors);
             console.log('inside error'); 
-            console.log(response); 
+            console.log( response); 
+        
             $(".alert-danger").show();
             $("#error_message").html(response);
         }
@@ -138,6 +139,7 @@
             errorString += value + "<br>";
         });
         $("#alert-danger").show();
+        
         $("#error_message").html(errorString);
     }                                            
         });
