@@ -1,6 +1,6 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-<link rel="stylesheet" src="./style.css">
+<link rel="stylesheet" href="./style.css">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">29Kreativ</a>
@@ -30,16 +30,9 @@
     <div class="card-body">
 <h1>Login Here</h1>
 <hr>
-<!-- <div class="btn-danger" id="error_message"></div> -->
-<!-- <div class="alert alert-danger" id="error_message" role="alert" style="display:none"> -->
 
-                <div class="alert alert-danger" id="error_message">
-                    <strong id="result"></strong>
-                </div>
+<div class="alert alert-danger" id="error_message"><strong id="result"></strong></div>
             
-
-
-
 <form method="post" action="/login/do_login" id="login-form">
   <div class="form-group mb-3">
     <label for="email">Email address</label> <span id="error_email" class="text-danger ms-3"></span>
@@ -55,71 +48,70 @@
 </div>
 </div>
 
-
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
-<script>
-  $(".alert").hide();
- $(document).ready(function(){
-    $(document).on('click','.login-btn', function(){
-        if($.trim($('#email').val()).length == 0){
-            error_email= 'Please Enter Email Address';
-            $('#error_email').text(error_email);
-        }
-        else{
-            error_email= '';
-            $('#error_email').text(error_email);
-        }
 
-        if($.trim($('#password').val()).length == 0){
-            error_password= 'Please Enter Password';
-            $('#error_password').text(error_password);
-        }
-        else{
-            error_password= '';
-            $('#error_password').text(error_password);
-        }
+<!-- <script src="./logic.js"> -->
+  <script>
+   $(".alert").hide();
+  $(document).ready(function(){
+     $(document).on('click','.login-btn', function(){
+         if($.trim($('#email').val()).length == 0){
+             error_email= 'Please Enter Email Address';
+             $('#error_email').text(error_email);
+         }
+         else{
+             error_email= '';
+             $('#error_email').text(error_email);
+         }
 
-        if(error_email != '' || error_password != '') {
-            return false;
-        }
-      });
+         if($.trim($('#password').val()).length == 0){
+             error_password= 'Please Enter Password';
+             $('#error_password').text(error_password);
+         }
+         else{
+             error_password= '';
+             $('#error_password').text(error_password);
+         }
 
-           
-          $("#submit-btn").click(function(e){
-                if(document.getElementById('login-form').checkValidity()){
-                    e.preventDefault();
-                    $.ajax({
-                        url: "<?php echo base_url('login/do_login')?>",
-                        method: 'post',
-                        data: $("#login-form").serialize()+'&action=login',
-                        success: function(response){
-                          console.log('inside success')
-                          console.log(response);
-                            if(response == "Okay"){
-                              console.log('inside okay')
-                                window.location.href="/dashboard";
-                            }
-                            else{
-                              console.log('inside error display')
-                                $(".alert").show();
-                                $("#error_message").html(response);
-                            }
-                        }
-                    }).fail(function(xhr, status, error) {
-                      console.log('inside error');
-                        var errors = JSON.parse(xhr.responseText);
-                        var errorString = "";
-                        $.each(errors, function(index, value){
-                            errorString += value + "<br>";
-                        });
+         if(error_email != '' || error_password != '') {
+             return false;
+         }
+       });
+
+           $("#submit-btn").click(function(e){
+                 if(document.getElementById('login-form').checkValidity()){
+                     e.preventDefault();
+                     $.ajax({
+                         url: "<?php echo base_url('login/do_login')?>",
+                         method: 'post',
+                         data: $("#login-form").serialize()+'&action=login',
+                         success: function(response){
+                           console.log('inside success')
+                           console.log(response);
+                             if(response == "Okay"){
+                               console.log('inside okay')
+                                 window.location.href="/dashboard";
+                             }
+                             else{
+                               console.log('inside error display')
+                                 $(".alert").show();
+                                 $("#error_message").html(response);
+                             }                         }
+                   }).fail(function(xhr, status, error) {
+                       console.log('inside error');
+                         var errors = JSON.parse(xhr.responseText);
+                         var errorString = "";
+                         $.each(errors, function(index, value){
+                             errorString += value + "<br>";
+                         });
                         
                         $("#error_message").html(errorString);
-                    });
-                }
+                     });
+                 }
               
-                return true;
-              });
-    });
+                 return true;
+               });
+     });
 
 
-</script>
+ </script>
