@@ -57,7 +57,8 @@ class Login extends BaseController
                 ];
 
                 $this->session->set($userData);
-                $response = 'Okay';
+                $response = 'Okay'; 
+                return $response;
             }
                 // echo view('login', $userData);  
                 // return $this->response->setJSON([
@@ -68,17 +69,19 @@ class Login extends BaseController
                 // $response = 'Login Successful!';
                 // echo $response;
                 else {   $response = 'Login Failed! Incorrect Password';
+                    return $response;
                     
                 }
             } 
             else{
                 $response= 'User does not exist!';
+                return $response;
                
             }  
             $data=[$email, $password, $response];
             // $data = [$response];
             print_r($data);
-            echo view('login', $data);
+            return view('login', $data);
 
 }
     

@@ -83,15 +83,20 @@
                         method: 'post',
                         data: $("#login-form").serialize()+'&action=login',
                         success: function(response){
-                            if(response === "Okay"){
-                                window.location='dashboard.php';
+                          console.log('inside success')
+                          console.log(response);
+                            if(response == "Okay"){
+                              console.log('inside okay')
+                                window.location.href="Dashboard/index";
                             }
                             else{
+                              console.log('inside error display')
                               
                                 $("#error_message").html(response);
                             }
                         }
                     }).fail(function(xhr, status, error) {
+                      console.log('inside error');
                         var errors = JSON.parse(xhr.responseText);
                         var errorString = "";
                         $.each(errors, function(index, value){
