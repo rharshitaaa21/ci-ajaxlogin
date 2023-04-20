@@ -40,7 +40,7 @@ class Register extends Controller
     $email = $this->request->getPost('email');
     $password = $this->request->getPost('password');
     $confirmpassword = $this->request->getPost('confirmpassword');
-
+    $response = '';
     $data = [
         'name' => $name,
         'email' => $email,
@@ -48,6 +48,7 @@ class Register extends Controller
         'confirmpassword' => $confirmpassword
     ];
 
+    
     if ($validation->run($data)) {
         $userModel = new UserModel();
         // print_r($userModel);
@@ -56,15 +57,23 @@ class Register extends Controller
         $data['password'] = $password;
 
         $userModel->insert($data);
-       echo json_encode(['success'=>'User added successfully.']);
-        return view('register', $data);
+        $response = "Okay" ;
+        return $response;
+        // echo view('register', $data);
     
     }
      else {
         $errors = $validation->getErrors();
-        echo json_encode(['error' => $errors]);
-         return view('register', $data);
+        // echo json_encode(['error' => $errors]);
+        //  echo view('register', $data);
         
-    }   
+    } 
+    // echo json_encode(['error' => $errors]);
+    // // array_push($data, $response);
+    // var_dump($response);
+    $userdata = [$name, $email, $password,$confirmpassword, $response];
+
+    return view('register', $userdata);  
 }
+
 }

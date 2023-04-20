@@ -29,8 +29,8 @@
     <h1>Register Here</h1>
     <hr>
    
-<div class="alert alert-danger" id="error_message"><strong id="result"></strong></div>  
-
+<div class="alert alert-danger" id="error_message"><strong id="result"></strong></div>
+<div class="alert alert-success" id="success_message"><strong id="result"></strong></div>  
  <form method="post" action="/register/do_register" id="register-form">
       <div class="form-group mb-3">
         <label for="name">Full Name</label><span id="error_name" class="text-danger ms-3"></span>
@@ -118,12 +118,13 @@
                            console.log('inside success')
                            console.log(response);
                              if(response == "Okay"){
-                               console.log('inside okay')
-                                 window.location.href="/dashboard";
+                               console.log('inside okay');
+                               $(".alert-success").show();
+                               $("#success_message").html("User Registered Successfully!");
                              }
                              else{
                                console.log('inside error display')
-                                 $(".alert").show();
+                                 $(".alert-danger").show();
                                  $("#error_message").html(response);
                              }                         }
                    }).fail(function(xhr, status, error) {
@@ -139,6 +140,8 @@
                  }
               
                  return true;
+
+            // alert("hiie");
                });
      });
 
