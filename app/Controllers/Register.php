@@ -9,6 +9,7 @@ class Register extends Controller
 {
     public function index()
     {
+        echo view('templates/header');
         return view('register');
     }
     public function do_register()
@@ -47,8 +48,6 @@ class Register extends Controller
         'password' => $password,
         'confirmpassword' => $confirmpassword
     ];
-
-    
     if ($validation->run($data)) {
         $userModel = new UserModel();
         // print_r($userModel);
@@ -59,28 +58,18 @@ class Register extends Controller
         $userModel->insert($data);
         $response = "Okay" ;
         return $response;
-        // echo view('register', $data);
     }
      else {
 
             $errors = $validation->getErrors();
             $err = [];
-
             foreach ($errors as $key => $error) {
                 $err[] = $error;
             }
-
             $response = implode('<br>', $err);
-            // print_r($response);
             return $response;
-
-
-       
-
      } 
-   
       $userdata = [$name, $email, $password,$confirmpassword, $response];
-
       return view('register', $userdata);  
 }
 

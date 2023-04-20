@@ -1,25 +1,4 @@
- <div class="card"> 
-    <div class="card-body">
-<h1>Login Here</h1>
-<hr>
-<div class="alert alert-danger" id="error_message"><strong id="result"></strong></div>   
-<form method="post" action="/login/do_login" id="login-form">
-  <div class="form-group mb-3">
-    <label for="email">Email address</label> <span id="error_email" class="text-danger ms-3"></span>
-    <input type="email" class="form-control " id="email"  name="email" placeholder="Enter email" required>
-  </div>
-  <div class="form-group mb-3">
-    <label for="password">Password</label> <span id="error_password" class="text-danger ms-3"></span>
-    <input type="password" class="form-control " id="password" name="password" placeholder="Enter Password" required>
-  </div>
-   <button type="submit" class="btn btn-primary login-btn" id="submit-btn">Login</button>
-</form>
-</div>
-</div>
-<script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
-
-  <script>
-   $(".alert").hide();
+$(".alert").hide();
   $(document).ready(function(){
      $(document).on('click','.login-btn', function(){
          if($.trim($('#email').val()).length == 0){
@@ -79,6 +58,3 @@
                  return true;
                });
      });
-
-
- </script>
