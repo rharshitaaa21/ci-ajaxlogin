@@ -15,8 +15,6 @@ class Register extends Controller
 {
 
      $validation = \Config\Services::validation();
-    // $this->load->library('form_validation');
-    // $this->load->library('session');
 
     $rules = [
         'name' => [

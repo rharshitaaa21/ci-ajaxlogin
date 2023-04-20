@@ -1,6 +1,5 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">29Kreativ</a>
@@ -42,11 +41,13 @@
     <label for="password">Password</label> <span id="error_password" class="text-danger ms-3"></span>
     <input type="password" class="form-control " id="password" name="password" placeholder="Enter Password" required>
   </div>
-   <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
+   <button type="submit" class="btn btn-primary login-btn" id="submit-btn">Login</button>
 </form>
 </div>
 </div>
 
+
+<script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
 <script>
  $(document).ready(function(){
     $(document).on('click','.login-btn', function(){
@@ -71,13 +72,14 @@
         if(error_email != '' || error_password != '') {
             return false;
         }
-        else {
+      });
+
            
-          $("#login-btn").click(function(e){
+          $("#submit-btn").click(function(e){
                 if(document.getElementById('login-form').checkValidity()){
                     e.preventDefault();
                     $.ajax({
-                        url: 'login.php',
+                        url: "<?php echo base_url('login/do_login') ?>",
                         method: 'post',
                         data: $("#login-form").serialize()+'&action=login',
                         success: function(response){
@@ -103,6 +105,6 @@
                 return true;
               });
     });
-});
+
 
 </script>
