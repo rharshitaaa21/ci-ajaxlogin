@@ -49,18 +49,18 @@ $(document).ready(function(){
           method: 'post',
           data: $("#register-form").serialize()+'&action=register',
           success: function(response){
-              console.log('inside success')
-              console.log(response);
+            //   console.log('inside success')
+            //   console.log(response);
               if(response == "Okay"){
-                  console.log('inside okay');
+                //   console.log('inside okay');
                   $(".alert-danger").hide();
                   $(".alert-success").show();
                   $("#success_message").html("User Registered Successfully! Please Login");
               }
               else {
-        console.log(response.errors);
-          console.log('inside error'); 
-          console.log( response); 
+        // console.log(response.errors);
+        //   console.log('inside error'); 
+        //   console.log( response); 
           
           $(".alert-danger").show();
           $("#error_message").html(response);
