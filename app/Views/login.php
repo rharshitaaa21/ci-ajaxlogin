@@ -17,10 +17,11 @@
 </div>
 </div>
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
+<script type="text/javascript" src="./javascript/login-logic.js"></script> 
 
   <script>
    $(".alert").hide();
-  $(document).ready(function(){
+  $(document).ready(function(){ 
      $(document).on('click','.login-btn', function(){
          if($.trim($('#email').val()).length == 0){
              error_email= 'Please Enter Email Address';
@@ -45,7 +46,7 @@
          }
        });
 
-           $("#submit-btn").click(function(e){
+           $(".login-btn").click(function(e){
                  if(document.getElementById('login-form').checkValidity()){
                      e.preventDefault();
                      $.ajax({
@@ -79,6 +80,4 @@
                  return true;
                });
      });
-
-
  </script>

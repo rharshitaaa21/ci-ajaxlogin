@@ -37,6 +37,7 @@
 
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
 
+
 <script>
 
    $(".alert").hide();
@@ -82,7 +83,7 @@
          }
        });
 
-       $("#save-btn").click(function(e){
+       $(".register-btn").click(function(e){
     if(document.getElementById('register-form').checkValidity()){
         e.preventDefault();
         $.ajax({

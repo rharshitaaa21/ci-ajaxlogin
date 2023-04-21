@@ -31,26 +31,6 @@ class Login extends BaseController
         $data = [$email, $password];
     
         if ($result) { 
-
-            // helper(['form']);
-            // $validation = \Config\Services::validation();
-        
-            // $validation->setRules([
-            //     'email' => 'required|valid_email',
-            //     'password' => 'required|min_length[6]'
-            // ]);
-        
-            // if (!$validation->withRequest($this->request)->run()) {
-            //     // echo view('login');
-            //     return $this->response->setJSON([
-            //         'status' => 'error',
-            //         'errors' => $validation->getErrors()
-            //     ]);
-            //     // $response = $validation->getErrors();
-            //     // echo $response;
-            // }
-            // else{
-
             if (password_verify($password, $result->password)) {
                 $userData = [
                     'id' => $result->id,
