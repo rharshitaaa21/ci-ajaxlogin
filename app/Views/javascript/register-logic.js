@@ -53,6 +53,7 @@ $(document).ready(function(){
               console.log(response);
               if(response == "Okay"){
                   console.log('inside okay');
+                  $(".alert-danger").hide();
                   $(".alert-success").show();
                   $("#success_message").html("User Registered Successfully! Please Login");
               }

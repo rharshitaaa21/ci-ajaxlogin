@@ -35,11 +35,11 @@ $(".alert").hide();
                            console.log('inside success')
                            console.log(response);
                              if(response == "Okay"){
-                               console.log('inside okay')
+                              //  console.log('inside okay')
                                  window.location.href="/dashboard";
                              }
                              else{
-                               console.log('inside error display')
+                              //  console.log('inside error display')
                                  $(".alert").show();
                                  $("#error_message").html(response);
                              }                         }

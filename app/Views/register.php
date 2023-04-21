@@ -37,10 +37,6 @@
 
 <script type="text/javascript" src="<?php echo base_url('assets/jquery/jquery.js'); ?>"></script>
 
-
-<!-- <script type="text/javascript" src="<?php echo base_url('app/Views/register-logic.js'); ?>"></script> --> -->
-
-
 <script>
 
    $(".alert").hide();
@@ -98,6 +94,7 @@
                 console.log(response);
                 if(response == "Okay"){
                     console.log('inside okay');
+                    $(".alert-danger").hide();
                     $(".alert-success").show();
                     $("#success_message").html("User Registered Successfully! Please Login");
                 }
